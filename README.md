@@ -22,10 +22,10 @@ Use one of the several ways of running a Spring Boot application. Below are just
 
  ### First you will need the following basic pieces of information:
 
- * client: testjwtclientid
+ * client: testGPSJWTClientID
  * secret: XY7kmzoNzl100
- * Non-admin username and password: john.doe and jwtpass
- * Admin user: admin.admin and jwtpass
+ * Non-admin username and password: san.kumar and jwtpass
+ * Admin user: prasana.admin and jwtpass
  * Example of resource accessible to all authenticated users:  http://localhost:8080/springjwt/cities
  * Example of resource accessible to only an admin user:  http://localhost:8080/springjwt/users
 
@@ -33,9 +33,17 @@ Use one of the several ways of running a Spring Boot application. Below are just
 
    Use the following generic command to generate an access token:
    `$ curl client:secret@localhost:8080/oauth/token -d grant_type=password -d username=user -d password=pwd`
+   
+  
 
-   For this specific application, to generate an access token for the non-admin user john.doe, run:
-   `$ curl testjwtclientid:XY7kmzoNzl100@localhost:8080/oauth/token -d grant_type=password -d username=john.doe -d password=jwtpass`
+   For this specific application, to generate an access token for the non-admin user san.kumar, run:
+   `$ curl testGPSJWTClientID:XY7kmzoNzl100@localhost:8080/oauth/token -d grant_type=password -d username=san.kumar -d password=jwtpass`
+   
+   or
+     `$ curl testGPSJWTClientID:XY7kmzoNzl100@178.128.27.49:8080/oauth/token -d grant_type=password -d username=san.kumar -d password=jwtpass`
+      
+   
+   
     You'll receive a response similar to below
 
     `
@@ -54,44 +62,52 @@ Use one of the several ways of running a Spring Boot application. Below are just
         Use the generated token  as the value of the Bearer in the Authorization header as follows:
         `curl  http://localhost:8080/springjwt/cities -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYWRtaW4uYWRtaW4iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNDk0NDU0MjgyLCJhdXRob3JpdGllcyI6WyJTVEFOREFSRF9VU0VSIiwiQURNSU5fVVNFUiJdLCJqdGkiOiIwYmQ4ZTQ1MC03ZjVjLTQ5ZjMtOTFmMC01Nzc1YjdiY2MwMGYiLCJjbGllbnRfaWQiOiJ0ZXN0and0Y2xpZW50aWQifQ.rvEAa4dIz8hT8uxzfjkEJKG982Ree5PdUW17KtFyeec" `
 
+ 'Chennai'
+ 'Thiruchi'
+ 'Madurai'
+ 'Bangalore'
+ 'Mumbai'
         The response will be:
         `
         [
           {
             "id": 1,
-            "name": "Bamako"
+            "name": "Chennai"
           },
           {
             "id": 2,
-            "name": "Nonkon"
+            "name": "Thiruchi"
           },
           {
             "id": 3,
-            "name": "Houston"
+            "name": "Madurai"
           },
           {
             "id": 4,
-            "name": "Toronto"
+            "name": "Bangalore"
           },
           {
             "id": 5,
-            "name": "New York"
+            "name": "Mumbai"
           },
           {
             "id": 6,
-            "name": "Mopti"
+            "name": "Vellore"
           },
           {
             "id": 7,
-            "name": "Koulikoro"
+            "name": "Calcutta"
           },
           {
             "id": 8,
-            "name": "Moscow"
+            "name": "Delhi"
           }
         ]`
 
     * Access content available only to an admin user
+    
+    `curl testGPSJWTClientID:XY7kmzoNzl100@178.128.27.49:8080/oauth/token -d grant_type=password -d username=prasana.admin -d password=jwtpass` 
+   
 
        As with the previous example first generate an access token for the admin user with the credentials provided above then run
            `curl  http://localhost:8080/springjwt/users -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOlsidGVzdGp3dHJlc291cmNlaWQiXSwidXNlcl9uYW1lIjoiYWRtaW4uYWRtaW4iLCJzY29wZSI6WyJyZWFkIiwid3JpdGUiXSwiZXhwIjoxNDk0NDU0OTIzLCJhdXRob3JpdGllcyI6WyJTVEFOREFSRF9VU0VSIiwiQURNSU5fVVNFUiJdLCJqdGkiOiIyMTAzMjRmMS05MTE0LTQ1NGEtODRmMy1hZjUzZmUxNzdjNzIiLCJjbGllbnRfaWQiOiJ0ZXN0and0Y2xpZW50aWQifQ.OuprVlyNnKuLkoQmP8shP38G3Hje91GBhu4E0HD2Fes" `
@@ -100,9 +116,9 @@ Use one of the several ways of running a Spring Boot application. Below are just
            [
              {
                "id": 1,
-               "username": "john.doe",
-               "firstName": "John",
-               "lastName": "Doe",
+               "username": "san.kumar",
+               "firstName": "San",
+               "lastName": "Kumar",
                "roles": [
                  {
                    "id": 1,
@@ -113,8 +129,8 @@ Use one of the several ways of running a Spring Boot application. Below are just
              },
              {
                "id": 2,
-               "username": "admin.admin",
-               "firstName": "Admin",
+               "username": "prasana.admin",
+               "firstName": "Prasana",
                "lastName": "Admin",
                "roles": [
                  {
